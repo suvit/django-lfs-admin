@@ -46,6 +46,9 @@ class string_with_title(str):
     def title(self):
         return self._title
 
+    def __hash__(self):
+        return hash(self.title())
+
     __copy__ = lambda self: self
     __deepcopy__ = lambda self, memodict: self
 
