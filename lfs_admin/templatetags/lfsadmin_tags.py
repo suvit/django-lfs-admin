@@ -12,11 +12,6 @@ register = template.Library()
 
 @register.inclusion_tag('manage/main_menu.html', takes_context=True)
 def main_menu(context):
-    """Returns the categories of the shop for management purposes.
-
-    The css_class attribute is used for different ajax based requests in
-    different views.
-    """
     app_list = lfssite.index(context['request']).context_data['app_list']
 
     new_app_list = SortedDict()
