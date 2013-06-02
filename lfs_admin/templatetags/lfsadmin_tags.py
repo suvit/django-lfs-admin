@@ -21,6 +21,6 @@ def main_menu(context):
         else:
             new_app_list[app['name']] = app
     context['new_app_list'] = new_app_list.values()
-    if context['title'] == _('Site administration'):
+    if context.get('title') == _('Site administration'):
         context['app_list'] = context['new_app_list']
     return context

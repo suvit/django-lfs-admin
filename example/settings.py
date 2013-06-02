@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'lfs.voucher',
     'lfs.manufacturer',
     'lfs.discounts',
+    'lfs_order_numbers',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

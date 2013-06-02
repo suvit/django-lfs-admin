@@ -4,9 +4,9 @@ from django.conf import settings
 from lfs_admin.admin import lfssite
 
 urlpatterns = patterns('',
-    url(r'^manage/', include(lfssite.urls)),
-    url(r'^', include('lfs.core.urls')),
+    url(r'^manage/admin/', include(lfssite.urls)),
     url(r'^manage/', include('lfs.manage.urls')),
+    url(r'^', include('lfs.core.urls')),
 )
 
 if settings.DEBUG:

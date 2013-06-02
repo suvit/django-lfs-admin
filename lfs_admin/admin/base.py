@@ -55,7 +55,7 @@ class string_with_title(str):
 
 # shop
 for model in (DeliveryTime, PaymentMethod, Shop, ShippingMethod,
-              Tax, CustomerTax, Image):
+              Tax, CustomerTax, Image, Action, ActionGroup):
     model._meta.app_label = string_with_title(model._meta.app_label,
                                               'Shop')
     lfssite.register(model)
