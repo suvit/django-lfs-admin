@@ -1,0 +1,21 @@
+{% load i18n %}
+{% if new_app_list %}
+<ul class="sf-menu"
+    width="100%">
+{% for app in new_app_list %}
+  <li><a>{% trans app.name %}</a>
+    <ul>
+      {% for model in app.models %}
+        <li><a href="{{ model.admin_url }}">{% trans model.name %}</a></li>
+      {% endfor %}
+    </ul>
+{% endfor %}
+  {% block help_wrapper %}
+      <li><a href="{{ LFS_DOCS }}{% block help_link %}{% endblock %}"
+             target="_blank">
+             {% trans "Help" %}
+          </a>
+      <li>
+  {% endblock %}
+</ul>
+{% endif %}

@@ -1,0 +1,1 @@
+from lfs_admin.admin.base import *

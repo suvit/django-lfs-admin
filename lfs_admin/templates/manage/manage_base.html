@@ -1,0 +1,130 @@
+{% load i18n sql compress lfsadmin_tags %}
+{% load url from future %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/ico" />
+        {% compress css %}
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/lfs.manage.css" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery-ui-1.8.13.custom/css/smoothness/jquery-ui-1.8.13.custom.css" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery/jquery.jgrowl.css" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery/superfish/superfish.css" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/lfs.manage-custom.css" />
+        {% endcompress %}
+        {% block extrastyle %}{% endblock %}
+        {% compress js %}
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery-1.7.2.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui-1.8.13.custom/js/jquery-ui-1.8.13.custom.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.ui.nestedSortable.js"></script>
+
+            <script type="text/javascript" src="{{ STATIC_URL }}tiny_mce-3.5b3/jquery.tinymce.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/lfs_tinymce.js"></script>
+
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.fileupload-4.2.1/jquery.fileupload-ui.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.fileupload-4.2.1/jquery.fileupload.js"></script>
+
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.form.pack.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.jgrowl_minimized.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.cookie.js"></script>
+
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery/superfish/superfish.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/lfs.manage.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/urlify.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/lfs.manage-custom.js"></script>
+        {% endcompress %}
+        {% block javascript %}{% endblock %}
+        {% block extrahead %}{% endblock %}
+        {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+    </head>
+    <body class="{% block section %}{% endblock %} {% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+        {# {% dbinfo %} #}
+
+        {% if not is_popup %}
+        <div class="lfs-header">
+            <div class="logo">
+                <a href="{% url 'manage:index' %}">
+                    <img src="{{ STATIC_URL }}img/logo_management.jpg"
+                         alt="LFS"
+                         title="LFS - Lightning Fast Shop"/>
+                </a>
+            </div>
+            <div class="username">
+                {% if user.is_authenticated %}
+                    {% if user.last_name %}
+                        <span>{{ user.get_full_name }}</span>
+                    {% else %}
+                        <span>{{ user.username }}</span>
+                    {% endif %}
+                    | <a class="logout"
+                         href="{% url 'admin:logout' %}">{% trans 'Logout' %}</a>
+                {% else %}
+                    <a href="{% url 'admin:login' %}">{% trans 'Login' %}</a>
+                {% endif %}
+            </div>
+
+            <table class="top-menu"
+                   width="100%"
+                   cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                      {% main_menu %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {% endif %}
+
+        <table class="main">
+            <tr>
+                {% block left-slot-wrapper %}
+                    <td class="left-slot">
+                        <div class="navigation-wrapper">
+                            {% block left_slot %}
+                              {% block sidebar %}{% endblock %}
+                            {% endblock %}
+                        </div>
+                    </td>
+                {% endblock %}
+                <td class="middle-slot">
+                    {% block pretitle %}{% endblock %}
+                    {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+                    {% block content %}
+                    {% block object-tools %}{% endblock %}
+                    {{ content }}
+                    {% endblock %}
+                </td>
+            </tr>
+        </table>
+
+        {% if not is_popup %}
+        {% block footer %}
+            <div class="footer">
+                <p>{% trans 'Powered by' %} <a target="_blank" href="http://www.getlfs.com">LFS</a> &mdash; Lightning Fast Shop</p>
+                <p>
+                    &copy; 2009 - 2011 {% trans 'by' %} Kai Diefenbach and contributors &mdash; {% trans 'All rights reserved' %}
+                </p>
+                <p>{% trans 'Distributed under the' %} <a target="_blank" href="http://www.opensource.org/licenses/bsd-license.php">{% trans 'BSD-License' %}</a></p>
+            </div>
+        {% endblock %}
+        {% endif %}
+
+        <div id="dialog" title="LFS Dialog"></div>
+
+        <div class="delete-dialog"
+             id="delete-dialog"
+             title='{% trans "Please Confirm" %}'
+             style="display:none">
+            <p class="message">{% trans "Do you really want to delete this object?" %}</p>
+            <form action="."
+                  method="POST">
+                {% csrf_token %}
+                <div class="dialog-buttons">
+                    <button class="dialog-yes-button button">{% trans "Yes" %}</button>
+                    <button class="dialog-close-button button">{% trans "No" %}</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

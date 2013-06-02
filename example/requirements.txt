@@ -1,0 +1,7 @@
+django<1.5,>1.4
+django-lfs>=0.7
+
+#XXX needed by django-lfs
+django-contact-form
+djangorestframework<1.0
+BeautufulSoup
