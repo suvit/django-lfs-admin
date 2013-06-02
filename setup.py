@@ -10,7 +10,7 @@ setup(
     version=__import__('lfs_admin').VERSION,
     description='Intergation of django-lfs and django.contrib.admin',
     author='Victor Safronovich',
-    author_email='',
+    author_email='vsafronovich@gmail.com',
     license='MIT',
     url='http://github.com/suvit/django-lfs-admin',
     zip_safe=False,
