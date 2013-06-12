@@ -23,6 +23,10 @@ DATABASES = {
     }
 }
 
+# TODO only if on heroku
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.4/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['*']

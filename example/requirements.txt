@@ -5,3 +5,6 @@ django-lfs>=0.7
 django-contact-form
 djangorestframework<1.0
 BeautifulSoup
+
+#heroku
+dj-database-url
