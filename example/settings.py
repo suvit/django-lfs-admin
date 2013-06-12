@@ -103,7 +103,7 @@ INSTALLED_APPS = (
     'paypal.standard.ipn',
     'paypal.standard.pdt',
     'contact_form',
-    'south',
+    #'south',
 
     'lfs',
     'lfs.core',
