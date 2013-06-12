@@ -2,6 +2,7 @@ django-lfs-admin examle
 ========================
 
 Run on heroku
+
     heroku create
     git push heroku master
     heroku ps:scale web=1
