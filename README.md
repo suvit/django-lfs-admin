@@ -40,7 +40,6 @@ TODO
 * write docs
 * write tests
 * add travis
-* upload to heroku
 
 USEFULL LINKS
 ---------------
