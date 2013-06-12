@@ -8,3 +8,4 @@ BeautifulSoup
 
 #heroku
 dj-database-url
+psycopg2
