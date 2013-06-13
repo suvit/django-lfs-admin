@@ -18,6 +18,9 @@ Please note, that ``lfs_admin`` app must be upper
 then ``lfs`` in ``INSTALLED_APPS`` list
 to overload ``manage/manage_base.html`` template
 
+Add ``apptemplates.Loader`` to TEMPLATE_LOADER setting.
+this is needed to overload templates
+
 
 USAGE
 -----
