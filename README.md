@@ -3,6 +3,8 @@ django-lfs-admin
 
 Integration between django-lfs and django.contrib.admin
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/suvit/django-lfs-admin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 INSTALLATION
 ------------
 
