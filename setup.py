@@ -17,6 +17,7 @@ setup(
     packages=find_packages(exclude=['docs', 'examples', 'tests']),
     install_requires=['django-privatesite',
                       'django-tinymce',
+                      'django-admin-utils',
                      ],
     include_package_data=True,
     classifiers=[

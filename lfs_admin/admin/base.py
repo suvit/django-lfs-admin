@@ -1,6 +1,9 @@
 
+from django.conf.urls import patterns, url
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
+
+from admin_utils import make_admin_class
 
 from privatesite.admin import CustomAdminSite, CustomModelAdmin
 
@@ -90,12 +93,16 @@ for model in FeaturedProduct, Topseller, Discount, Voucher, OrderRatingMail:
                                               'Marketing')
     lfssite.register(model)
 
-# misc
-# TODO add misc view
+# utils
 for model in Export,:
     model._meta.app_label = string_with_title(model._meta.app_label,
                                               'Utils')
     lfssite.register(model)
+
+make_admin_class('Miscellaneous', patterns("",
+    url(r'^$', 'lfs.manage.views.utils.utilities',
+        name='utils_miscellaneous_changelist'),
+), "utils", site=lfssite)
 
 lfssite.register(User, UserAdmin)
 lfssite.register(Group, GroupAdmin)
